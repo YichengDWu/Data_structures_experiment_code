@@ -188,3 +188,4 @@ int main()
 }
 ```
 ## 实验结果：
+![image](https://github.com/MilkshakeForReal/Data_structures_experiment_code/blob/master/images/Linked_List.png)
