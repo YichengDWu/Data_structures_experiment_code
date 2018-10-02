@@ -13,7 +13,7 @@
 (11)输出单链表h。  
 (12)释放单链表h。  
 
-```C
+```cpp
 #include <iostream>
 using namespace std;
 
