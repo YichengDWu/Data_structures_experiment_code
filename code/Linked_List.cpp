@@ -12,28 +12,28 @@ public:
 class linklist
 {
 public:
-	linklist(); //´´½¨Ò»¸öµ¥Á´±í
-	~linklist(); //Ïú»Ùµ¥Á´±í
-	void creatlist(Datatype a[], int n);//Î²²å·¨
-	void print();  //Êä³öµ¥Á´±í
-	int getlen(); //µÃµ½Á´±íµÄ³¤¶È
-	bool isempty(); //ÅĞ¶ÏÊÇ·ñÎª¿Õ
-	Datatype getelm(int i); //°´Î»ÖÃ²éÕÒÔªËØ
-	int locate(Datatype e); //°´Öµ²éÕÒÔªËØÎ»ÖÃ
-	bool insert(Datatype elm, int i); //ÔÚÖ¸¶¨Î»ÖÃ²åÈëÔªËØ
-	bool Delete(int i); //É¾³ıÖ¸¶¨Î»ÖÃÔªËØ
+	linklist(); //åˆ›å»ºä¸€ä¸ªå•é“¾è¡¨
+	~linklist(); //é”€æ¯å•é“¾è¡¨
+	void creatlist(Datatype a[], int n);//å°¾æ’æ³•
+	void print();  //è¾“å‡ºå•é“¾è¡¨
+	int getlen(); //å¾—åˆ°é“¾è¡¨çš„é•¿åº¦
+	bool isempty(); //åˆ¤æ–­æ˜¯å¦ä¸ºç©º
+	Datatype getelm(int i); //æŒ‰ä½ç½®æŸ¥æ‰¾å…ƒç´ 
+	int locate(Datatype e); //æŒ‰å€¼æŸ¥æ‰¾å…ƒç´ ä½ç½®
+	bool insert(Datatype elm, int i); //åœ¨æŒ‡å®šä½ç½®æ’å…¥å…ƒç´ 
+	bool Delete(int i); //åˆ é™¤æŒ‡å®šä½ç½®å…ƒç´ 
 
 private:
 	Node *head;
 };
 
-linklist::linklist()  //³õÊ¼»¯
+linklist::linklist()  //åˆå§‹åŒ–
 {
 	head = new Node;
 	head->key = NULL;
 	head->next = NULL;
 }
-linklist::~linklist() //É¾³ıËùÓĞ½áµã
+linklist::~linklist() //åˆ é™¤æ‰€æœ‰ç»“ç‚¹
 {
 	Node *temp;
 	head = head->next;
@@ -44,12 +44,12 @@ linklist::~linklist() //É¾³ıËùÓĞ½áµã
 		delete temp;
 	}
 	delete head;
-	cout << "Á´±íÄÚ´æÒÑÊÍ·Å" << endl;
+	cout << "é“¾è¡¨å†…å­˜å·²é‡Šæ”¾" << endl;
 }
 
 void linklist::creatlist(Datatype a[], int n) 
 {
-	Node *tail = head;//Ö¸ÏòÎ²½áµã
+	Node *tail = head;//æŒ‡å‘å°¾ç»“ç‚¹
 	for (int i = 0; i < n; i++)
 	{
 		Node *temp = new Node;
@@ -63,7 +63,7 @@ void linklist::creatlist(Datatype a[], int n)
 void linklist::print()
 {
 	Node *p = head->next;
-	cout << "µ±Ç°Á´±íÎª£º";
+	cout << "å½“å‰é“¾è¡¨ä¸ºï¼š";
 	while (p != NULL) { cout << p->key<<' '; p = p->next; }
 	cout << endl;
 }
@@ -106,7 +106,7 @@ int linklist::locate(Datatype e)
 		p = p->next;
 		i++;
 	}
-	if (p == NULL) { return 0; }//0±íÊ¾Ã»ÓĞÕÒµ½
+	if (p == NULL) { return 0; }//0è¡¨ç¤ºæ²¡æœ‰æ‰¾åˆ°
 	else
 		return i;
 }
@@ -116,7 +116,7 @@ bool linklist::insert(Datatype elm, int i)
 	if (i <= 0 || i > (*this).getlen()+1) { return false; }
 	else
 	{
-		Node *newelm = new Node; //´´½¨Ò»¸öĞÂ½áµã
+		Node *newelm = new Node; //åˆ›å»ºä¸€ä¸ªæ–°ç»“ç‚¹
 		newelm->key = elm;
 
 		int j = 1;
@@ -155,15 +155,15 @@ bool linklist::Delete(int i)
 int main()
 {
 	linklist h;
-	Datatype a[5] = { 'a','b','c','d','e' };
+	char a[5] = { 'a','b','c','d','e' };
 	int n = 5;
 	h.creatlist(a, 5);
 	h.print();
-	cout << "µ±Ç°Á´±í³¤¶ÈÎª£º" << h.getlen() << endl;
-	if (h.isempty()) { cout << "µ±Ç°Á´±í×´Ì¬£º¿Õ" << endl; }
-	else { cout << "µ±Ç°Á´±í×´Ì¬£º·Ç¿Õ" << endl; }
-	cout << "hµÚÈı¸öÔªËØÎª£º" << h.getelm(3) << endl;
-	cout << "aµÄÎ»ÖÃÎª£º" << h.locate('a') << endl;
+	cout << "å½“å‰é“¾è¡¨é•¿åº¦ä¸ºï¼š" << h.getlen() << endl;
+	if (h.isempty()) { cout << "å½“å‰é“¾è¡¨çŠ¶æ€ï¼šç©º" << endl; }
+	else { cout << "å½“å‰é“¾è¡¨çŠ¶æ€ï¼šéç©º" << endl; }
+	cout << "hç¬¬ä¸‰ä¸ªå…ƒç´ ä¸ºï¼š" << h.getelm(3) << endl;
+	cout << "açš„ä½ç½®ä¸ºï¼š" << h.locate('a') << endl;
 	h.insert('f', 4);
 	h.print();
 	h.Delete(3);
