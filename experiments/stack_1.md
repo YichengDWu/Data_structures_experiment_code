@@ -10,4 +10,4 @@
 ### 基本思路：基于vector库实现  
 
 ## 实验结果
-![image]https://github.com/MilkshakeForReal/Data_structures_experiment_code/blob/master/images/stack_1.png
+![image](https://github.com/MilkshakeForReal/Data_structures_experiment_code/blob/master/images/stack_1.png)
