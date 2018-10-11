@@ -67,5 +67,19 @@ bool L_Stack::Pop(Datatype &e)
 int main() 
 {
 	L_Stack s;
+	if(s.isempty())cout<<"当前状态为空"<<endl;
+	else cout<<"当前状态非空"<<endl;
+	s.Push('a');
+	s.Push('b');
+	s.Push('c');
+	s.Push('d');
+	s.Push('e');
+	if(s.isempty())cout<<"当前状态为空"<<endl;
+	else cout<<"当前状态非空"<<endl;
+	char e;
+	while(!s.isempty()){s.Pop(e);cout<<e<<' ';}
+	cout<<endl;
+	if(s.isempty())cout<<"当前状态为空"<<endl;
+	else cout<<"当前状态非空"<<endl;
 	return 0;
 }
