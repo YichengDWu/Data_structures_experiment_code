@@ -15,7 +15,7 @@ class L_Stack
 public:
     L_Stack(); //创建一个链栈栈
     ~L_Stack(); //销毁链栈
-    bool isempty(){return (head->next == NULL); //判断是否为空
+    bool isempty(){return (head->next == NULL);} //判断是否为空
     void Push(Datatype const& ); //入栈
     bool Pop(Datatype &); //出栈，将栈顶元素放到e里
     Datatype GetTop(){return head->next->key;}//取顶
@@ -26,7 +26,7 @@ private:
 L_Stack::L_Stack()
 {   
     head = new Node;
-    head->key = NULL;
+    head->key = -1;
     head->next = NULL;
 }
 L_Stack::~L_Stack()
