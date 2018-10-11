@@ -14,11 +14,11 @@ class L_Stack
 {
 public:
     L_Stack(); //创建一个链栈栈
-	~L_Stack(); //销毁链栈
-	bool isempty(){return (head->next == NULL); //判断是否为空
-	void Push(Datatype const& ); //入栈
-	bool Pop(Datatype &); //出栈，将栈顶元素放到e里
-	Datatype GetTop(){return head->next->key;}//取顶
+    ~L_Stack(); //销毁链栈
+    bool isempty(){return (head->next == NULL); //判断是否为空
+    void Push(Datatype const& ); //入栈
+    bool Pop(Datatype &); //出栈，将栈顶元素放到e里
+    Datatype GetTop(){return head->next->key;}//取顶
 private:
     Node *head;
 };
@@ -32,15 +32,14 @@ L_Stack::L_Stack()
 L_Stack::~L_Stack()
 {
     Node *temp;
+    while (head->next != NULL)
+    {
+	temp = head;
 	head = head->next;
-	while (head != NULL)
-	{
-		temp = head;
-		head = head->next;
-		delete temp;
-	}
-	delete head;
-	cout << "链表内存已释放" << endl;
+	delete temp;
+    }
+    delete head;
+    cout << "链表内存已释放" << endl;
 }
 
 void L_Stack::Push(Datatype const& e)
