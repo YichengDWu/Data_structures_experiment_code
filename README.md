@@ -2,4 +2,4 @@
 ## 已更新内容：
 顺序表(Squential_list)  
 单链表(Linked_List)  
-栈(Stack)
+顺序栈(stack_1)
