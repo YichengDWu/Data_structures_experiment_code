@@ -16,6 +16,8 @@ public:
     L_Stack(); //创建一个链栈栈
 	~L_Stack(); //销毁链栈
 	bool isempty(); //判断是否为空
+	void Push(Datatype const& ); //入栈
+	bool Pop(Datatype &); //出栈，将栈顶元素放到e里
 private:
     Node *head;
 };
@@ -46,9 +48,30 @@ bool L_Stack::isempty()
     else return false;
 }
 
+void L_Stack::Push(Datatype const& e)
+{
+	Node *a = new Node;
+	a->key = e;
+	a->next = head->next;
+	head->next = a;
+}
+bool L_Stack::Pop(Datatype &e)
+{
+	if(head->next == NULL) return false;
+	else
+	{
+		e = head->next->key;
+		Node *temp = head->next;
+		head->next = head->next->next;
+		delete temp;
+		return true;
+	}
+}
+
 
 
 int main() 
 {
+	L_stack s;
 	return 0;
 }
