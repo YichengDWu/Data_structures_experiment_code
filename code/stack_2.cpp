@@ -66,6 +66,6 @@ bool L_Stack::Pop(Datatype &e)
 
 int main() 
 {
-	L_stack s;
+	L_Stack s;
 	return 0;
 }
