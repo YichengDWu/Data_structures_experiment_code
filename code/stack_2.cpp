@@ -15,9 +15,10 @@ class L_Stack
 public:
     L_Stack(); //创建一个链栈栈
 	~L_Stack(); //销毁链栈
-	bool isempty(); //判断是否为空
+	bool isempty(){return (head->next == NULL); //判断是否为空
 	void Push(Datatype const& ); //入栈
 	bool Pop(Datatype &); //出栈，将栈顶元素放到e里
+	Datatype GetTop(){return head->next->key;}//取顶
 private:
     Node *head;
 };
@@ -40,12 +41,6 @@ L_Stack::~L_Stack()
 	}
 	delete head;
 	cout << "链表内存已释放" << endl;
-}
-
-bool L_Stack::isempty()
-{
-    if(head->next == NULL)return true;
-    else return false;
 }
 
 void L_Stack::Push(Datatype const& e)
