@@ -3,3 +3,4 @@
 顺序表(Squential_list)  
 单链表(Linked_List)  
 顺序栈(stack_1)
+链栈()
