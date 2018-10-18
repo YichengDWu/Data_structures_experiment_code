@@ -1,0 +1,81 @@
+#include <iostream>
+using namespace std;
+
+typedef char Datatype;
+
+class Node
+{
+public:
+	Datatype key;
+	Node *next;
+};
+class L_Queque
+{
+public:
+	L_Queque() { tail = new Node; tail = NULL; };  //初始化
+	~L_Queque();
+	bool isempty() { return (tail == NULL); };
+	void enqueque(Datatype e);
+	bool dequeque(Datatype &e);
+private:
+	Node *tail;
+};
+
+void L_Queque::enqueque(Datatype e)
+{
+	Node *temp = new Node;
+	temp->key = e;
+	if (tail == NULL) { tail = temp; tail->next = tail; }
+	else 
+	{
+		temp->next = tail->next;
+		tail->next = temp;
+		tail = temp;
+	}
+	
+}
+
+bool L_Queque::dequeque(Datatype &e)
+{
+	Node *temp;
+	if (tail->next == NULL)return false;
+	else if (tail->next == tail)
+	{
+		e = tail->key;
+		delete tail;
+		tail = NULL;
+	}
+	else
+	{
+		temp = tail->next;
+		e = temp->key;
+		tail->next = temp->next;
+		delete temp;
+	}
+	return true;
+}
+
+L_Queque::~L_Queque()
+{
+	Datatype e;
+	while (tail != NULL) { (*this).dequeque(e); }
+}
+int main()
+{
+	L_Queque q;
+	cout << q.isempty() << endl;
+	q.enqueque('a');
+	q.enqueque('b');
+	q.enqueque('c');
+	char e;
+	if (!q.dequeque(e))cout << "下溢" << endl;
+	else cout << e << endl;
+	q.enqueque('d');
+	q.enqueque('e');
+	q.enqueque('f');
+	while (!q.isempty())
+	{
+		q.dequeque(e); cout << e << " ";
+	}
+	return 0;
+}
