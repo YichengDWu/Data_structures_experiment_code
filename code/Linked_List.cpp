@@ -36,7 +36,6 @@ linklist::linklist()  //初始化
 linklist::~linklist() //删除所有结点
 {
 	Node *temp;
-	head = head->next;
 	while (head != NULL)
 	{
 		temp = head;
