@@ -45,7 +45,6 @@ private:
 	Term *head;
 public:
 	Poly() { head = new Term(0, -1); }
-	~Poly();
 	friend ostream& operator<<(ostream &, const Poly&);
 	friend istream& operator>>(istream&, Poly&);
 	Poly operator+(Poly &);
@@ -128,18 +127,7 @@ Poly Poly::operator+(Poly &p2)
 	return sum;
 }
 
-Poly::~Poly()
-{
-	Term *temp = head, *p = temp->next;
-	while (p != NULL)
-	{
-		delete temp;
-		temp = p;
-		p = p->next;
-	}
-	delete temp;
-	delete head;
-}
+
 int main()
 {
 	Poly p, q, sum;
