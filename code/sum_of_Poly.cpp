@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-class Term  //定义顶多项式多的项
+class Term  //定义多项式的项
 {
 public:
 	double coef;  //系数
