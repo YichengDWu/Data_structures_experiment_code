@@ -17,24 +17,24 @@ public:
 	friend ostream& operator<<(ostream&, const Term &);
 };
 
-ostream& operator<<(ostream & out,const Term& t)
+ostream& operator<<(ostream & out, const Term& t)
 {
 	if (t.coef == 0) { return out; }
 	switch (t.power)
 	{
-		case 0:out << t.coef; break;
-		case 1:
-		{
-			if (t.coef != 1 && t.coef != -1)cout << t.coef;
-			else if (t.coef == -1) out << "-";
-			out << "x"; break;
-		}
-		default:
-		{
-			if (t.coef != 1 && t.coef != -1)cout << t.coef;
-			else if (t.coef == -1) out << "-";
-			out << "x^" << t.power; break;
-		}
+	case 0:out << t.coef; break;
+	case 1:
+	{
+		if (t.coef != 1 && t.coef != -1)cout << t.coef;
+		else if (t.coef == -1) out << "-";
+		out << "x"; break;
+	}
+	default:
+	{
+		if (t.coef != 1 && t.coef != -1)cout << t.coef;
+		else if (t.coef == -1) out << "-";
+		out << "x^" << t.power; break;
+	}
 	}
 	return out;
 }
@@ -48,11 +48,12 @@ public:
 	friend ostream& operator<<(ostream &, const Poly&);
 	friend istream& operator>>(istream&, Poly&);
 	Poly operator+(Poly &);
+	void release();
 };
 
 istream& operator>> (istream& in, Poly& poly)
 {
-	Term *temp = poly.head ;
+	Term *temp = poly.head;
 	double c; int p;
 	while (true)
 	{
@@ -71,8 +72,8 @@ ostream& operator<< (ostream& out, const Poly& poly)
 	while (temp->next != NULL)
 	{
 		temp = temp->next;
-		if (temp->coef > 0 && !first ) { out << "+" << (*temp); }
-		else out << (*temp); 
+		if (temp->coef > 0 && !first) { out << "+" << (*temp); }
+		else out << (*temp);
 		if (temp->coef != 0)first = false;
 	}
 	out << endl;
@@ -127,13 +128,27 @@ Poly Poly::operator+(Poly &p2)
 	return sum;
 }
 
+void Poly::release()
+{
+	Term* temp;
+	while (head != NULL)
+	{
+		temp = head;
+		head = head->next;
+		delete temp;
+	}
+}
+
 
 int main()
 {
 	Poly p, q, sum;
-	cin >> p; cout << "此多项式为："<< p;
-	cin >> q; cout << "此多项式为："<< q;
+	cin >> p; cout << "此多项式为：" << p;
+	cin >> q; cout << "此多项式为：" << q;
 	sum = q + p;
-	cout << "两多项式之和为: "<<sum;
+	cout << "两多项式之和为: " << sum;
+	sum.release();
+	q.release();
+	p.release();
 	return 0;
 }
