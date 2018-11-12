@@ -25,6 +25,9 @@ public:
 	void release(BTnode *b);	 //销毁二叉树
 	~BTree() { release(root); }
 	BTnode *search(BTnode *, Datatype x);
+	int height(BTnode *);
+	int count(BTnode *); //统计有多少个结点
+	int level(BTnode *, Datatype); //返回结点x的层次，根结点为第一层
 
 };
 
@@ -44,13 +47,13 @@ istream& operator>>(istream &in, BTree &bt)
 		case ',': k = 2; break;
 		default:
 			p = new BTnode(s[i]);
-			if (bt.root == NULL) { bt.root = p; } 
+			if (bt.root == NULL) { bt.root = p; }
 			else
 			{
 				if (k == 1) st.back()->lchild = p;
 				else st.back()->rchild = p;
 			}
-			
+
 			break;
 		}
 		i++;
@@ -69,7 +72,7 @@ void BTree::print(BTnode *p)
 			print(p->lchild);
 			if (p->rchild != NULL) cout << ",";
 			print(p->rchild);
-			cout<<")";
+			cout << ")";
 		}
 	}
 }
@@ -77,7 +80,7 @@ void BTree::print(BTnode *p)
 ostream& operator<<(ostream &out, BTree &bt)
 {
 	bt.print(bt.root);
-	out<<endl;
+	out << endl;
 	return out;
 }
 
@@ -105,6 +108,43 @@ BTnode* BTree::search(BTnode *b, Datatype x)
 	}
 }
 
+int BTree::height(BTnode *b)
+{
+	if (b == NULL)return 0;
+	else
+	{
+		int lheight, rheight;
+		lheight = height(b->lchild);
+		rheight = height(b->rchild);
+		return (lheight > rheight) ? (lheight + 1) : (rheight + 1);
+	}
+}
+
+int BTree::count(BTnode *b)
+{
+	if (b == NULL)return 0;
+	else return count(b->lchild) + count(b->rchild) + 1;
+}
+
+
+int BTree::level(BTnode *b, Datatype x)
+{
+	if ( b == NULL )return 0;
+	else if (b->key == x)return 1;
+	else
+	{
+		int l;
+		l = level(b->lchild, x);
+		if (l != 0) return l + 1;  //如果左边找到了
+		else
+		{
+			l = level(b->rchild, x); 
+			if (l != 0) return l + 1;  //如果右边找到了
+			else return 0; //两边都没找到
+		}
+		
+	}
+}
 
 
 int main()
@@ -112,6 +152,11 @@ int main()
 	BTree b;
 	cin >> b;
 	cout << b;
-	//cout<<(b.search(b.root, 'C'))->key;
+	cout << "树的高度为：" << b.height(b.root) << endl;
+	cout << "树的结点数为：" << b.count(b.root) << endl;
+	char n;
+	cout << "请输入要查找的结点：";
+	cin >> n;
+	cout << "结点" << n << "所在的层次为：" << b.level(b.root, n) << endl;
 	return 0;
 }
