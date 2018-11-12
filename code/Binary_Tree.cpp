@@ -77,6 +77,7 @@ void BTree::print(BTnode *p)
 ostream& operator<<(ostream &out, BTree &bt)
 {
 	bt.print(bt.root);
+	out<<endl;
 	return out;
 }
 
