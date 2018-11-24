@@ -8,4 +8,5 @@
 队列(Queque)    
 链队(Linked_Queque)  
 基本二叉树(Binary_Tree)  
-哈夫曼编码(HTcode)
+哈夫曼编码(HTcode)  
+最短路径问题(Dijkstra)
