@@ -1,4 +1,5 @@
 #include <iostream>
+#include<deque>
 using namespace std;
 
 #define MAX 5
@@ -30,7 +31,10 @@ public:
 	void create(int A[][MAX], int num, int edges); //根据邻接矩阵创建邻接表
 	Graph();
 	void release();
-	void toMat(int B[][MAX]);
+	void toMat(int B[][MAX]);  //转化为领接矩阵
+	void DFS(int v); //深度优先遍历
+	void DFS_f(int v, int r[]);
+	void BFS(int v); //广度优先遍历
 };
 
 Graph::Graph()
@@ -88,17 +92,69 @@ void Graph::toMat(int B[][MAX])
 			p = p->next_v;
 		}
 	}
-
 }
+
+void Graph::DFS(int v)
+{
+    int r[MAX];
+    for(int i = 0;i<MAX;i++)
+    {
+        r[i] = 0;
+    }
+    DFS_f(v, r);
+}
+
+void Graph::DFS_f(int v, int r[])
+{
+    Enode *p = head[v].first_v;
+    r[v] = 1;
+    cout<<"v"<<v<<" ";
+    while(p!=NULL)
+    {
+        if(r[p->loc] == 0) DFS_f(p->loc, r);
+        p = p->next_v;
+    }
+}
+
+void Graph::BFS(int v)
+{
+    deque<int> r;
+    int visited[MAX];
+    for(int i = 0;i<MAX;i++)
+    {
+        visited[i] = 0;
+    }
+    cout<<"v"<<v<<" ";
+    visited[v] = 1;
+    r.push_back(v);
+    while(r.size() != 0)
+    {
+        int w = r[0];
+        r.pop_front();
+        Enode *p = head[w].first_v;
+        while(p!=NULL)
+        {
+            if(visited[p->loc] == 0)
+            {
+                cout<<"v"<<p->loc<<" ";
+                    visited[p->loc] =1;
+                    r.push_back(p->loc);
+            }
+            p =p->next_v;
+        }
+    }
+    
+}
+    
 
 
 int main()
 {
-	int ADJ[MAX][MAX] = { 0, 8, INF, 5, INF,
-						INF, 0, 3, INF, INF,
-						INF, INF, 0, INF, 6,
-						INF, INF, 9, 0, INF,
-						1, 5, 8, 5, 0 };
+	int ADJ[MAX][MAX] = { 0, INF, INF,1, INF, 
+						  INF, 0, 1, INF,1,
+						  INF, 1, 0, 1, INF,
+						  1, INF, 1, 0, INF,
+						  INF, INF, INF, INF, 0 };
 	int BDJ[MAX][MAX] = { 0, INF, INF, INF, INF,
 						INF, 0, INF, INF, INF,
 						INF, INF, 0, INF, INF,
@@ -118,6 +174,8 @@ int main()
 			else cout << BDJ[i][j] << '\t';
 			if (j == MAX-1)cout << '\n';
 		}
+	g.DFS(2);cout<<endl;
+	g.BFS(2);
 	g.release();
 	return 0;
 }
