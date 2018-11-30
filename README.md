@@ -10,5 +10,5 @@
 基本二叉树(Binary_Tree)  
 哈夫曼编码(HTcode)  
 最短路径问题(Dijkstra)  
-走迷宫(maze)
+走迷宫(maze)  
 最小生成树(Kruskal)
